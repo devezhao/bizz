@@ -26,21 +26,15 @@ import cn.devezhao.bizz.security.member.User;
  */
 public class EntityQueryFilter implements QueryFilter {
 
-	private static String fieldOwnUser;
-	private static String fieldOwnBizUnit;
-	private static String valueRootUser;
-	private static String valueRootRole;
+	private static String F_OwnUser;
+	private static String F_OwnBizUnit;
+	private static String V_RootUser;
+	private static String V_RootRole;
 	static {
-		String cfgFile = "bizz-cfg.properties";
-		InputStream in = EntityQueryFilter.class.getClassLoader()
-				.getResourceAsStream(cfgFile);
+		String cfgFile = "bizz.properties";
+		InputStream in = EntityQueryFilter.class.getClassLoader().getResourceAsStream(cfgFile);
 		if (in == null) {
-			in = EntityQueryFilter.class.getClassLoader()
-					.getResourceAsStream("org/qdss/bizz/" + cfgFile);
-		}
-		if (in == null) {
-			in = EntityQueryFilter.class.getClassLoader()
-					.getResourceAsStream("org/qdss/bizz/default-bizz-cfg.properties");
+			in = EntityQueryFilter.class.getClassLoader().getResourceAsStream("cn/devezhao/bizz/bizz-default");
 		}
 		Properties props = new Properties();
 		try {
@@ -49,10 +43,10 @@ public class EntityQueryFilter implements QueryFilter {
 			throw new BizzException("Could't load config file!", e);
 		}
 		
-		fieldOwnUser = props.getProperty("field.own-user");
-		fieldOwnBizUnit = props.getProperty("field.own-biz-unit");
-		valueRootUser = props.getProperty("value.root-user");
-		valueRootRole = props.getProperty("value.root-role");
+		F_OwnUser = props.getProperty("field.own-user");
+		F_OwnBizUnit = props.getProperty("field.own-biz-unit");
+		V_RootUser = props.getProperty("value.root-user");
+		V_RootRole = props.getProperty("value.root-role");
 	}
 	
 	// -----------------------------------------------------------------------------------
@@ -99,8 +93,8 @@ public class EntityQueryFilter implements QueryFilter {
 	}
 	
 	public String evaluate(int entity) {
-		if (role.getIdentity().toString().equals(valueRootRole)
-				|| user.getIdentity().toString().equals(valueRootUser)) {
+		if (role.getIdentity().toString().equals(V_RootRole)
+				|| user.getIdentity().toString().equals(V_RootUser)) {
 			return ALLOWED.evaluate(entity);
 		}
 		
@@ -119,22 +113,19 @@ public class EntityQueryFilter implements QueryFilter {
 		StringBuffer filter = new StringBuffer();
 		
 		if (de == BizzDepthEntry.PRIVATE) {
-			filter.append(MessageFormat.format(FV_FORMAT,
-					fieldOwnUser, user.getIdentity()));
+			filter.append(MessageFormat.format(FV_FORMAT, F_OwnUser, user.getIdentity()));
 			return evaluate(entity, filter);
 		} else if (de == BizzDepthEntry.LOCAL) {
-			filter.append(MessageFormat.format(FV_FORMAT,
-					fieldOwnBizUnit, user.getOwningBizUnit().getIdentity()));
+			filter.append(MessageFormat.format(FV_FORMAT, F_OwnBizUnit, user.getOwningBizUnit().getIdentity()));
 			return evaluate(entity, filter);
 		} else if (de == BizzDepthEntry.DEEPDOWN) {
 			BusinessUnit biz = user.getOwningBizUnit();
 			filter.append("( ");
 			filter.append(MessageFormat.format(FV_FORMAT,
-					fieldOwnBizUnit, biz.getIdentity()));
+					F_OwnBizUnit, biz.getIdentity()));
 			
 			for (BusinessUnit cBiz : biz.getChildren()) {
-				filter.append(" OR ").append(MessageFormat.format(FV_FORMAT,
-						fieldOwnBizUnit, cBiz.getIdentity()));
+				filter.append(" OR ").append(MessageFormat.format(FV_FORMAT, F_OwnBizUnit, cBiz.getIdentity()));
 			}
 			return evaluate(entity, filter.append(" )"));
 		}

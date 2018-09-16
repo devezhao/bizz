@@ -24,16 +24,18 @@ public class Team extends MemberGroup {
 
 	@Override
 	public boolean addMember(Principal user) {
-		if (!super.addMember(user))
+		if (!super.addMember(user)) {
 			return false;
+		}
 		((User) user).joinTeam(this);
 		return true;
 	}
 
 	@Override
 	public boolean removeMember(Principal user) {
-		if (!super.removeMember(user))
+		if (!super.removeMember(user)) {
 			return false;
+		}
 		((User) user).exitTeam(this);
 		return true;
 	}

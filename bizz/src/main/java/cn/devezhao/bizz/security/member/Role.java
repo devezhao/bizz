@@ -32,16 +32,18 @@ public class Role extends MemberGroup {
 	
 	@Override
 	public boolean addMember(Principal user) {
-		if (!super.addMember(user))
+		if (!super.addMember(user)) {
 			return false;
+		}
 		((User) user).setOwningRole(this);
 		return true;
 	}
 	
 	@Override
 	public boolean removeMember(Principal user) {
-		if (!super.removeMember(user))
+		if (!super.removeMember(user)) {
 			return false;
+		}
 		((User) user).setOwningRole(null);
 		return true;
 	}
@@ -74,8 +76,9 @@ public class Role extends MemberGroup {
 	 * @throws AccessDeniedException If {@link #hasPrivileges(int)} returns <tt>false</tt>
 	 */
 	public Privileges getPrivileges(int entity) throws AccessDeniedException {
-		if (!hasPrivileges(entity))
+		if (!hasPrivileges(entity)) {
 			throw new AccessDeniedException("No such entity privileges: " + entity);
+		}
 		return allPrivileges.get(entity);
 	}
 }

@@ -3,7 +3,7 @@ package cn.devezhao.bizz;
 import org.apache.commons.lang.exception.NestableRuntimeException;
 
 /**
- * Bizz跟异常
+ * Bizz Root Exception
  * 
  * @author <a href="mailto:zhaofang123@gmail.com">Zhao Fangfang</a>
  * @since 0.2, 2010-10-4

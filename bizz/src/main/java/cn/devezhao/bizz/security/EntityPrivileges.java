@@ -82,11 +82,13 @@ public class EntityPrivileges implements Privileges {
 		
 		DepthEntry sup = BizzDepthEntry.NONE;
 		for (DepthEntry de : set) {
-			if (de.getMask() > sup.getMask())
+			if (de.getMask() > sup.getMask()) {
 				sup = de;
+			}
 			
-			if (BizzDepthEntry.GLOBAL.equals(sup))
+			if (BizzDepthEntry.GLOBAL.equals(sup)) {
 				return BizzDepthEntry.GLOBAL;
+			}
 		}
 		return sup;
 	}
