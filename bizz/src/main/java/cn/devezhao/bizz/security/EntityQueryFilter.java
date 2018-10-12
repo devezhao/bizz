@@ -34,7 +34,7 @@ public class EntityQueryFilter implements QueryFilter {
 		String cfgFile = "bizz.properties";
 		InputStream in = EntityQueryFilter.class.getClassLoader().getResourceAsStream(cfgFile);
 		if (in == null) {
-			in = EntityQueryFilter.class.getClassLoader().getResourceAsStream("cn/devezhao/bizz/bizz-default");
+			in = EntityQueryFilter.class.getClassLoader().getResourceAsStream("cn/devezhao/bizz/bizz-default.properties");
 		}
 		Properties props = new Properties();
 		try {
@@ -98,17 +98,18 @@ public class EntityQueryFilter implements QueryFilter {
 			return ALLOWED.evaluate(entity);
 		}
 		
-		Privileges priv = null;
+		Privileges p = null;
 		try {
-			priv = role.getPrivileges(entity);
+			p = role.getPrivileges(entity);
 		} catch (AccessDeniedException denied) {
 			LOG.error(denied.toString());
 			return DENIED.evaluate(entity);
 		}
 		
-		DepthEntry de = priv.superlative(BizzPermission.READ);
-		if (de == BizzDepthEntry.GLOBAL)
+		DepthEntry de = p.superlative(BizzPermission.READ);
+		if (de == BizzDepthEntry.GLOBAL) {
 			return ALLOWED.evaluate(entity);
+		}
 		
 		StringBuffer filter = new StringBuffer();
 		
@@ -121,8 +122,7 @@ public class EntityQueryFilter implements QueryFilter {
 		} else if (de == BizzDepthEntry.DEEPDOWN) {
 			BusinessUnit biz = user.getOwningBizUnit();
 			filter.append("( ");
-			filter.append(MessageFormat.format(FV_FORMAT,
-					F_OwnBizUnit, biz.getIdentity()));
+			filter.append(MessageFormat.format(FV_FORMAT, F_OwnBizUnit, biz.getIdentity()));
 			
 			for (BusinessUnit cBiz : biz.getChildren()) {
 				filter.append(" OR ").append(MessageFormat.format(FV_FORMAT, F_OwnBizUnit, cBiz.getIdentity()));

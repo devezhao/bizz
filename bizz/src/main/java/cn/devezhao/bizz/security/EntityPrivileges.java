@@ -22,7 +22,7 @@ import cn.devezhao.bizz.privileges.impl.BizzPermission;
 public class EntityPrivileges implements Privileges {
 	private static final long serialVersionUID = -8141823128069571526L;
 
-	private final int entity;
+	private final Integer entity;
 	private final String definition;
 	
 	private final Map<DepthEntry, Permission[]> dePermissions = new HashMap<DepthEntry, Permission[]>();
@@ -34,12 +34,11 @@ public class EntityPrivileges implements Privileges {
 	 * 			权限定义，各层级之间使用 <tt>,</tt> 分割，层级与权限值之间使用 <tt>:</tt> 分割。
 	 * 			<pre>
 	 * 			如 <i>1:15,2:15,3:8,4:0</i> 其意为：
-	 * 			<i>1:15</i> 其中 <i>1</i> 表示私人，<i>15</i> 是动作值的累加（本例中的动作是 15 = 1+2+4+8），
-	 * 			即对应 <i>增 + 删 + 改 + 查</i>
+	 * 			<i>1:15</i> 其中 <i>1</i> 表示私人，<i>15</i> 是动作值的累加（本例中的动作是 15 = 1+2+4+8），即对应 <i>增 + 删 + 改 + 查</i>
 	 * 			以此类推，具体值定义参考类 {@link BizzPermission}, {@link BizzDepthEntry}
 	 * 			</pre>
 	 */
-	public EntityPrivileges(int entity, String definition) {
+	public EntityPrivileges(Integer entity, String definition) {
 		this.entity = entity;
 		this.definition = definition;
 		
@@ -48,13 +47,20 @@ public class EntityPrivileges implements Privileges {
 			String dpVal[] = dv.split(":");
 			
 			Permission[] perms = BizzPermission.parse(Integer.valueOf(dpVal[1]));
-			for (Permission p : perms)
+			for (Permission p : perms) {
 				allPermissions.add(p);
+			}
 			dePermissions.put(
 					BizzDepthEntry.parse(Integer.valueOf(dpVal[0])), perms);
 		}
 	}
 	
+	@Override
+	public Serializable getIdentity() {
+		return getEntity();
+	}
+	
+	@Override
 	public boolean allowed(Permission action) {
 		return allPermissions.contains(action);
 	}
@@ -62,10 +68,12 @@ public class EntityPrivileges implements Privileges {
 	/**
 	 * Always throw UnsupportedOperationException
 	 */
+	@Override
 	public boolean allowed(Permission action, Serializable targetGuard) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public DepthEntry superlative(Permission action) {
 		Set<DepthEntry> set = new HashSet<DepthEntry>(dePermissions.size());
 		for (Map.Entry<DepthEntry, Permission[]> e : dePermissions.entrySet()) {
@@ -77,8 +85,9 @@ public class EntityPrivileges implements Privileges {
 			}
 		}
 		
-		if (set.isEmpty())
+		if (set.isEmpty()) {
 			return BizzDepthEntry.NONE;
+		}
 		
 		DepthEntry sup = BizzDepthEntry.NONE;
 		for (DepthEntry de : set) {
@@ -98,7 +107,7 @@ public class EntityPrivileges implements Privileges {
 	 * 
 	 * @return
 	 */
-	public int getEntity() {
+	public Integer getEntity() {
 		return entity;
 	}
 	

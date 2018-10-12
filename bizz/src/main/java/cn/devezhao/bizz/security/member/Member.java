@@ -68,18 +68,14 @@ public class Member implements Identity {
 	
 	@Override
 	public int hashCode() {
-		int h = System.identityHashCode(getIdentity());
-		h += ~(h << 9);
-		h ^= (h >>> 14);
-		h += (h << 4);
-		h ^= (h >>> 10);
-		return h;
+		return getIdentity().toString().hashCode();
 	}
 	
 	@Override
 	public boolean equals(Object o) {
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		return hashCode() == o.hashCode();
 	}
 	

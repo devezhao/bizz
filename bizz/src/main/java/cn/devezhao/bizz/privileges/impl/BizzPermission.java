@@ -16,6 +16,8 @@ import cn.devezhao.bizz.privileges.Permission;
 public class BizzPermission implements Permission {
 	private static final long serialVersionUID = -3736314513059920238L;
 	
+	// 动作值定义
+	
 	/** 
 	 * 创建 */
 	public static final Permission CREATE = new BizzPermission("C", (1 << 0), false);

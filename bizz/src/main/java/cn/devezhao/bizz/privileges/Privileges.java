@@ -1,6 +1,7 @@
 package cn.devezhao.bizz.privileges;
 
 import java.io.Serializable;
+
 import cn.devezhao.bizz.privileges.impl.BizzDepthEntry;
 
 /**
@@ -16,13 +17,19 @@ public interface Privileges extends Serializable {
 	 * 最高权限定义 */
 	final Privileges ROOT = new Privileges() {
 		private static final long serialVersionUID = 4001796962013737440L;
-
+		@Override
+		public Serializable getIdentity() {
+			return "ROOT";
+		}
+		@Override
 		public boolean allowed(Permission action) {
 			return true;
 		}
+		@Override
 		public boolean allowed(Permission action, Serializable targetGuard) {
 			return true;
 		}
+		@Override
 		public DepthEntry superlative(Permission action) {
 			return BizzDepthEntry.GLOBAL;
 		}
@@ -30,6 +37,13 @@ public interface Privileges extends Serializable {
 
 	// -----------------------------------------------------------------------------------
 
+	/**
+	 * 权限标识
+	 * 
+	 * @return
+	 */
+	Serializable getIdentity();
+	
 	/**
 	 * 是否允许指定动作
 	 * 

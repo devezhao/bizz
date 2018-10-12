@@ -15,6 +15,8 @@ import cn.devezhao.bizz.privileges.DepthEntry;
  */
 public class BizzDepthEntry implements DepthEntry {
 	private static final long serialVersionUID = 7612024724703543451L;
+	
+	// 权限深度
 
 	/**
 	 * 全局 */
@@ -48,8 +50,9 @@ public class BizzDepthEntry implements DepthEntry {
 	 */
 	public static DepthEntry parse(final int mask) throws IllegalArgumentException {
 		DepthEntry de = depthEntriesByMask.get(mask);
-		if (de == null)
+		if (de == null) {
 			throw new IllegalArgumentException("No DepthEntry defined: " + mask);
+		}
 		return de;
 	}
 
@@ -73,8 +76,9 @@ public class BizzDepthEntry implements DepthEntry {
 
 		if (previous != null) {
 			BizzDepthEntry bde = (BizzDepthEntry) this.previous;
-			if (bde.next != null)
+			if (bde.next != null) {
 				throw new IllegalArgumentException("Could't re-defined next DepthEntry for BizzDepthEnter!");
+			}
 			bde.next = this;
 		}
 	}

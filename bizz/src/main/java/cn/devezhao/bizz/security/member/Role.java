@@ -7,7 +7,6 @@ import java.util.Map;
 
 import cn.devezhao.bizz.privileges.Privileges;
 import cn.devezhao.bizz.security.AccessDeniedException;
-import cn.devezhao.bizz.security.EntityPrivileges;
 
 /**
  * 角色
@@ -19,7 +18,7 @@ import cn.devezhao.bizz.security.EntityPrivileges;
 public class Role extends MemberGroup {
 	private static final long serialVersionUID = -8635993188721946096L;
 
-	private Map<Integer, Privileges> allPrivileges = new HashMap<Integer, Privileges>();
+	private Map<Serializable, Privileges> allPrivileges = new HashMap<Serializable, Privileges>();
 	
 	/**
 	 * @param identity
@@ -49,36 +48,35 @@ public class Role extends MemberGroup {
 	}
 	
 	/**
-	 * 添加实体权限
+	 * 添加权限
 	 * 
 	 * @param priv
 	 */
 	public void addPrivileges(Privileges priv) {
-		int e = ((EntityPrivileges) priv).getEntity();
-		allPrivileges.put(e, priv);
+		allPrivileges.put(priv.getIdentity(), priv);
 	}
 	
 	/**
-	 * 是否包含指定实体权限
+	 * 是否包含指定权限
 	 * 
-	 * @param entity
+	 * @param identity
 	 * @return
 	 */
-	public boolean hasPrivileges(int entity) {
-		return allPrivileges.containsKey(entity);
+	public boolean hasPrivileges(Serializable identity) {
+		return allPrivileges.containsKey(identity);
 	}
 	
 	/**
 	 * 获取指定实体权限
 	 * 
-	 * @param entity
+	 * @param identity
 	 * @return
 	 * @throws AccessDeniedException If {@link #hasPrivileges(int)} returns <tt>false</tt>
 	 */
-	public Privileges getPrivileges(int entity) throws AccessDeniedException {
-		if (!hasPrivileges(entity)) {
-			throw new AccessDeniedException("No such entity privileges: " + entity);
+	public Privileges getPrivileges(Serializable identity) throws AccessDeniedException {
+		if (!hasPrivileges(identity)) {
+			throw new AccessDeniedException("No such privileges : " + identity);
 		}
-		return allPrivileges.get(entity);
+		return allPrivileges.get(identity);
 	}
 }
