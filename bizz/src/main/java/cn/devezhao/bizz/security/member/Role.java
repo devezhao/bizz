@@ -2,6 +2,8 @@ package cn.devezhao.bizz.security.member;
 
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -78,5 +80,14 @@ public class Role extends MemberGroup {
 			throw new AccessDeniedException("No such privileges : " + identity);
 		}
 		return allPrivileges.get(identity);
+	}
+	
+	/**
+	 * 权限明细
+	 * 
+	 * @return
+	 */
+	public Collection<Privileges> getAllPrivileges() {
+		return Collections.unmodifiableCollection(allPrivileges.values());
 	}
 }

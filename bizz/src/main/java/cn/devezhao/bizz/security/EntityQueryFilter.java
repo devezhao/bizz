@@ -5,9 +5,6 @@ import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.Properties;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import cn.devezhao.bizz.BizzException;
 import cn.devezhao.bizz.privileges.DepthEntry;
 import cn.devezhao.bizz.privileges.Privileges;
@@ -69,8 +66,6 @@ public class EntityQueryFilter implements QueryFilter {
 	
 	// -----------------------------------------------------------------------------------
 	
-	private static final Log LOG = LogFactory.getLog(EntityQueryFilter.class);
-	
 	static final String FV_FORMAT = "( {0} = ''{1}'' )";
 	
 	protected final User user;
@@ -102,7 +97,6 @@ public class EntityQueryFilter implements QueryFilter {
 		try {
 			p = role.getPrivileges(entity);
 		} catch (AccessDeniedException denied) {
-			LOG.error(denied.toString());
 			return DENIED.evaluate(entity);
 		}
 		
