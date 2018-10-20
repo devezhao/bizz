@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.devezhao.bizz.privileges.Privileges;
-import cn.devezhao.bizz.security.AccessDeniedException;
 
 /**
  * 角色
@@ -73,11 +72,10 @@ public class Role extends MemberGroup {
 	 * 
 	 * @param identity
 	 * @return
-	 * @throws AccessDeniedException If {@link #hasPrivileges(int)} returns <tt>false</tt>
 	 */
-	public Privileges getPrivileges(Serializable identity) throws AccessDeniedException {
+	public Privileges getPrivileges(Serializable identity) {
 		if (!hasPrivileges(identity)) {
-			throw new AccessDeniedException("No such privileges : " + identity);
+			return Privileges.NONE;
 		}
 		return allPrivileges.get(identity);
 	}

@@ -19,7 +19,7 @@ public interface Privileges extends Serializable {
 		private static final long serialVersionUID = 4001796962013737440L;
 		@Override
 		public Serializable getIdentity() {
-			return "ROOT";
+			return "_ROOT";
 		}
 		@Override
 		public boolean allowed(Permission action) {
@@ -32,6 +32,28 @@ public interface Privileges extends Serializable {
 		@Override
 		public DepthEntry superlative(Permission action) {
 			return BizzDepthEntry.GLOBAL;
+		}
+	};
+	
+	/**
+	 * 无权限定义 */
+	final Privileges NONE = new Privileges() {
+		private static final long serialVersionUID = 4001796962013737440L;
+		@Override
+		public Serializable getIdentity() {
+			return "_NONE";
+		}
+		@Override
+		public boolean allowed(Permission action) {
+			return false;
+		}
+		@Override
+		public boolean allowed(Permission action, Serializable targetGuard) {
+			return false;
+		}
+		@Override
+		public DepthEntry superlative(Permission action) {
+			return BizzDepthEntry.NONE;
 		}
 	};
 
