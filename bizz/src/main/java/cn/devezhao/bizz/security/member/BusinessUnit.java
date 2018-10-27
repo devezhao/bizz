@@ -84,6 +84,19 @@ public class BusinessUnit extends MemberGroup {
 	}
 	
 	/**
+	 * 移除子部门
+	 * 
+	 * @param child
+	 */
+	public void removeChild(BusinessUnit child) {
+		if (!childBizUnits.contains(child)) {
+			return;
+		}
+		childBizUnits.remove(child);
+		child.setParent(null);
+	}
+	
+	/**
 	 * 获取子部门列表
 	 * 
 	 * @return
