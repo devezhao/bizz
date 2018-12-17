@@ -32,14 +32,16 @@ public class MemberGroup extends Member implements Group {
 	}
 
 	public boolean addMember(Principal user) {
-		if (isMember(user))
+		if (isMember(user)) {
 			return false;
+		}
 		return allMembers.add(user);
 	}
 	
 	public boolean removeMember(Principal user) {
-		if (!isMember(user))
+		if (!isMember(user)) {
 			return false;
+		}
 		return allMembers.remove(user);
 	}
 	
