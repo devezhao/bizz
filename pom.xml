@@ -5,7 +5,7 @@
 
 	<groupId>cn.devezhao</groupId>
 	<artifactId>bizz</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>bizz</name>
@@ -23,7 +23,6 @@
 		<url>https://github.com/devezhao/bizz</url>
 		<connection>scm:git:git://github.com/devezhao/bizz.git</connection>
 		<developerConnection>scm:git:git@github.com:devezhao/bizz.git</developerConnection>
-		<tag>bizz-${version}</tag>
 	</scm>
 	
 	<properties>
