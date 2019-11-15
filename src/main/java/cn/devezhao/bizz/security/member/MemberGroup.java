@@ -49,9 +49,18 @@ public class MemberGroup extends Member implements Group {
 		return allMembers.contains(user);
 	}
 	
+	public boolean isMember(Serializable identity) {
+		for (Principal user : allMembers) {
+			if (((User) user).getIdentity().equals(identity)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	@Deprecated
 	public Enumeration<? extends Principal> members() {
-		throw new UnsupportedOperationException("Deprecated method! Please using #getMembers");
+		throw new UnsupportedOperationException("Deprecated! Please using #getMembers");
 	}
 
 	/**
