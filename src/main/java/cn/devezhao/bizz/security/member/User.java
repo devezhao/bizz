@@ -84,7 +84,7 @@ public class User extends Member implements Principal {
 	 * @param team
 	 */
 	protected void joinTeam(Team team) {
-		team.addMember(this);
+		owningTeams.add(team);
 	}
 	
 	/**
@@ -93,6 +93,6 @@ public class User extends Member implements Principal {
 	 * @param team
 	 */
 	protected void exitTeam(Team team) {
-		team.removeMember(this);
+		owningTeams.remove(team);
 	}
 }
