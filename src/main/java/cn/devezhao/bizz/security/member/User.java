@@ -18,7 +18,7 @@ public class User extends Member implements Principal {
 
 	private Role owningRole;
 	private BusinessUnit owningBizUnit;
-	private Set<Team> owningTeams = new HashSet<Team>(2);
+	private Set<Team> owningTeams = new HashSet<>(2);
 
 	/**
 	 * @param identity

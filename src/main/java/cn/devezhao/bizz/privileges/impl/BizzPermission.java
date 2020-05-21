@@ -47,7 +47,7 @@ public class BizzPermission implements Permission {
 	 * @return
 	 */
 	public static Permission[] parse(final int masks) {
-		List<Permission> bps = new ArrayList<Permission>(3);
+		List<Permission> bps = new ArrayList<>(3);
 		if ((masks & CREATE.getMask()) != 0)
 			bps.add(CREATE);
 		if ((masks & DELETE.getMask()) != 0)
@@ -60,7 +60,7 @@ public class BizzPermission implements Permission {
 			bps.add(ASSIGN);
 		if ((masks & SHARE.getMask()) != 0)
 			bps.add(SHARE);
-		return bps.toArray(new BizzPermission[bps.size()]);
+		return bps.toArray(new Permission[0]);
 	}
 	
 	// -----------------------------------------------------------------------------------

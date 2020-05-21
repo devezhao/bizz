@@ -34,7 +34,7 @@ public class BizzDepthEntry implements DepthEntry {
 	 * 无 */
 	public static final DepthEntry NONE 	= new BizzDepthEntry("N", 0, PRIVATE);
 
-	private static final Map<Integer, DepthEntry> depthEntriesByMask = new HashMap<Integer, DepthEntry>(5);
+	private static final Map<Integer, DepthEntry> depthEntriesByMask = new HashMap<>(5);
 	static {
 		depthEntriesByMask.put(GLOBAL.getMask(), GLOBAL);
 		depthEntriesByMask.put(DEEPDOWN.getMask(), DEEPDOWN);

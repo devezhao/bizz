@@ -20,7 +20,7 @@ public class MemberGroup extends Member implements Group {
 	
 	/**
 	 * 成员 */
-	protected final Set<Principal> allMembers = new HashSet<Principal>();
+	protected final Set<Principal> allMembers = new HashSet<>();
 	
 	/**
 	 * @param identity

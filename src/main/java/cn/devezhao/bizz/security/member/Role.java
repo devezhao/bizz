@@ -19,7 +19,7 @@ import cn.devezhao.bizz.privileges.Privileges;
 public class Role extends MemberGroup {
 	private static final long serialVersionUID = -8635993188721946096L;
 
-	private Map<Serializable, Privileges> allPrivileges = new HashMap<Serializable, Privileges>();
+	private Map<Serializable, Privileges> allPrivileges = new HashMap<>();
 	
 	/**
 	 * @param identity

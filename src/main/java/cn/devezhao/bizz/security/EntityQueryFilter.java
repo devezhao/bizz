@@ -50,19 +50,11 @@ public class EntityQueryFilter implements QueryFilter {
 	
 	/**
 	 * 总是拒绝 */
-	public static final QueryFilter DENIED = new QueryFilter() {
-		public String evaluate(int entity) {
-			return "( 1 = 0 )";
-		}
-	};
+	public static final QueryFilter DENIED = entity -> "( 1 = 0 )";
 	
 	/**
 	 * 总是允许 */
-	public static final QueryFilter ALLOWED = new QueryFilter() {
-		public String evaluate(int entity) {
-			return "( 1 = 1 )";
-		}
-	};
+	public static final QueryFilter ALLOWED = entity -> "( 1 = 1 )";
 	
 	// -----------------------------------------------------------------------------------
 	
@@ -93,7 +85,7 @@ public class EntityQueryFilter implements QueryFilter {
 			return ALLOWED.evaluate(entity);
 		}
 		
-		Privileges p = null;
+		Privileges p;
 		try {
 			p = role.getPrivileges(entity);
 		} catch (AccessDeniedException denied) {

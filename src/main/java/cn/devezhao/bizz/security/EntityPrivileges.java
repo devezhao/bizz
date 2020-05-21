@@ -1,6 +1,7 @@
 package cn.devezhao.bizz.security;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -25,8 +26,8 @@ public class EntityPrivileges implements Privileges {
 	private final Integer entity;
 	private final String definition;
 	
-	private final Map<DepthEntry, Permission[]> dePermissions = new HashMap<DepthEntry, Permission[]>();
-	private final Set<Permission> allPermissions = new HashSet<Permission>();
+	private final Map<DepthEntry, Permission[]> dePermissions = new HashMap<>();
+	private final Set<Permission> allPermissions = new HashSet<>();
 	
 	/**
 	 * @param entity
@@ -42,16 +43,13 @@ public class EntityPrivileges implements Privileges {
 		this.entity = entity;
 		this.definition = definition;
 		
-		String depthValues[] = definition.split(",");
+		String[] depthValues = definition.split(",");
 		for (String dv : depthValues) {
-			String dpVal[] = dv.split(":");
+			String[] dpVal = dv.split(":");
 			
-			Permission[] perms = BizzPermission.parse(Integer.valueOf(dpVal[1]));
-			for (Permission p : perms) {
-				allPermissions.add(p);
-			}
-			dePermissions.put(
-					BizzDepthEntry.parse(Integer.valueOf(dpVal[0])), perms);
+			Permission[] perms = BizzPermission.parse(Integer.parseInt(dpVal[1]));
+            allPermissions.addAll(Arrays.asList(perms));
+			dePermissions.put(BizzDepthEntry.parse(Integer.parseInt(dpVal[0])), perms);
 		}
 	}
 	
@@ -75,7 +73,7 @@ public class EntityPrivileges implements Privileges {
 
 	@Override
 	public DepthEntry superlative(Permission action) {
-		Set<DepthEntry> set = new HashSet<DepthEntry>(dePermissions.size());
+		Set<DepthEntry> set = new HashSet<>(dePermissions.size());
 		for (Map.Entry<DepthEntry, Permission[]> e : dePermissions.entrySet()) {
 			for (Permission p : e.getValue()) {
 				if (action.equals(p)) {

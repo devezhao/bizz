@@ -14,7 +14,7 @@ import cn.devezhao.bizz.privileges.Identity;
 public class Member implements Identity {
 	private static final long serialVersionUID = -108698555460795334L;
 	
-	private Serializable identity;
+	private final Serializable identity;
 	private String name;
 	private boolean disabled;
 	
@@ -70,15 +70,14 @@ public class Member implements Identity {
 	public int hashCode() {
 		return getIdentity().toString().hashCode();
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
-		if (o == null) {
-			return false;
-		}
+		if (o == null) return false;
+		if (o == this) return true;
 		return hashCode() == o.hashCode();
 	}
-	
+
 	/**
 	 * Returns NAME:ID:DISABLED@super#toString
 	 */
