@@ -34,13 +34,13 @@ public class BizzDepthEntry implements DepthEntry {
 	 * 无 */
 	public static final DepthEntry NONE 	= new BizzDepthEntry("N", 0, PRIVATE);
 
-	private static final Map<Integer, DepthEntry> depthEntriesByMask = new HashMap<>(5);
+	private static final Map<Integer, DepthEntry> DEPTH_ENTRIES_BY_MASK = new HashMap<>(5);
 	static {
-		depthEntriesByMask.put(GLOBAL.getMask(), GLOBAL);
-		depthEntriesByMask.put(DEEPDOWN.getMask(), DEEPDOWN);
-		depthEntriesByMask.put(LOCAL.getMask(), LOCAL);
-		depthEntriesByMask.put(PRIVATE.getMask(), PRIVATE);
-		depthEntriesByMask.put(NONE.getMask(), NONE);
+		DEPTH_ENTRIES_BY_MASK.put(GLOBAL.getMask(), GLOBAL);
+		DEPTH_ENTRIES_BY_MASK.put(DEEPDOWN.getMask(), DEEPDOWN);
+		DEPTH_ENTRIES_BY_MASK.put(LOCAL.getMask(), LOCAL);
+		DEPTH_ENTRIES_BY_MASK.put(PRIVATE.getMask(), PRIVATE);
+		DEPTH_ENTRIES_BY_MASK.put(NONE.getMask(), NONE);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class BizzDepthEntry implements DepthEntry {
 	 * @throws IllegalArgumentException If illegal mask value
 	 */
 	public static DepthEntry parse(final int mask) throws IllegalArgumentException {
-		DepthEntry de = depthEntriesByMask.get(mask);
+		DepthEntry de = DEPTH_ENTRIES_BY_MASK.get(mask);
 		if (de == null) {
 			throw new IllegalArgumentException("No DepthEntry defined: " + mask);
 		}
@@ -83,15 +83,18 @@ public class BizzDepthEntry implements DepthEntry {
 		}
 	}
 
-	public Serializable getIdentity() {
+	@Override
+    public Serializable getIdentity() {
 		return new StringBuffer(getName()).append(':').append(getMask()).toString();
 	}
 
-	public int getMask() {
+	@Override
+    public int getMask() {
 		return mask;
 	}
 
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 

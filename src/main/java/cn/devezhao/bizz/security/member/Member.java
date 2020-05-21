@@ -1,6 +1,7 @@
 package cn.devezhao.bizz.security.member;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import cn.devezhao.bizz.privileges.Identity;
 
@@ -13,9 +14,9 @@ import cn.devezhao.bizz.privileges.Identity;
  */
 public class Member implements Identity {
 	private static final long serialVersionUID = -108698555460795334L;
-	
-	private final Serializable identity;
-	private String name;
+
+    private final Serializable identity;
+	private final String name;
 	private boolean disabled;
 	
 	/**
@@ -37,18 +38,21 @@ public class Member implements Identity {
 		this.disabled = disabled;
 	}
 	
-	public Serializable getIdentity() {
+	@Override
+    public Serializable getIdentity() {
 		return identity;
 	}
 
 	/**
 	 * Returns 0
 	 */
-	public int getMask() {
+	@Override
+    public int getMask() {
 		return 0;
 	}
 
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 	
@@ -68,19 +72,16 @@ public class Member implements Identity {
 	
 	@Override
 	public int hashCode() {
-		return getIdentity().toString().hashCode();
+	    return Objects.hash(super.hashCode(), getIdentity());
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		if (o == null) return false;
+		if (o == null || getClass() != o.getClass()) return false;
 		if (o == this) return true;
 		return hashCode() == o.hashCode();
 	}
 
-	/**
-	 * Returns NAME:ID:DISABLED@super#toString
-	 */
 	@Override
 	public String toString() {
 		return new StringBuffer(getName()).append(':').append(getIdentity())

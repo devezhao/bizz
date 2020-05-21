@@ -10,10 +10,19 @@ import java.io.Serializable;
  * @version $Id: Identity.java 10 2015-06-08 09:10:43Z zhaoff@wisecrm.com $
  */
 public interface Identity extends Serializable {
-	
+
+    /**
+     * @return
+     */
 	Serializable getIdentity();
-	
+
+    /**
+     * @return
+     */
 	String getName();
-	
+
+    /**
+     * @return
+     */
 	int getMask();
 }

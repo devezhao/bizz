@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.security.Principal;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -30,7 +31,8 @@ public class BusinessUnit extends MemberGroup {
 		super(identity, name, disabled);
 	}
 	
-	public boolean addMember(Principal user) {
+	@Override
+    public boolean addMember(Principal user) {
 		if (!super.addMember(user)) {
 			return false;
 		}

@@ -79,7 +79,8 @@ public class EntityQueryFilter implements QueryFilter {
 		this.role = role;
 	}
 	
-	public String evaluate(int entity) {
+	@Override
+    public String evaluate(int entity) {
 		if (role.getIdentity().toString().equals(V_RootRole)
 				|| user.getIdentity().toString().equals(V_RootUser)) {
 			return ALLOWED.evaluate(entity);

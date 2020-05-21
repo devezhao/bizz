@@ -88,16 +88,19 @@ public class BizzPermission implements Permission {
 		this.needGuard = needGuard;
 	}
 
-	public Serializable getIdentity() {
+	@Override
+    public Serializable getIdentity() {
 		return new StringBuffer(getName()).append(':').append(getMask())
 				.append(':').append(isNeedGuard() ? 1 : 0).toString();
 	}
 
-	public int getMask() {
+	@Override
+    public int getMask() {
 		return mask;
 	}
 
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 

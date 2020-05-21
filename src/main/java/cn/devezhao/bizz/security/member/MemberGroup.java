@@ -31,21 +31,24 @@ public class MemberGroup extends Member implements Group {
 		super(identity, name, disabled);
 	}
 
-	public boolean addMember(Principal user) {
+	@Override
+    public boolean addMember(Principal user) {
 		if (isMember(user)) {
 			return false;
 		}
 		return allMembers.add(user);
 	}
 	
-	public boolean removeMember(Principal user) {
+	@Override
+    public boolean removeMember(Principal user) {
 		if (!isMember(user)) {
 			return false;
 		}
 		return allMembers.remove(user);
 	}
 	
-	public boolean isMember(Principal user) {
+	@Override
+    public boolean isMember(Principal user) {
 		return allMembers.contains(user);
 	}
 	
@@ -58,7 +61,8 @@ public class MemberGroup extends Member implements Group {
 		return false;
 	}
 	
-	@Deprecated
+	@Override
+    @Deprecated
 	public Enumeration<? extends Principal> members() {
 		throw new UnsupportedOperationException("Deprecated! Please using #getMembers");
 	}
