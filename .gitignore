@@ -76,3 +76,4 @@ Temporary Items
 /target/
 /.settings/
 *.iml
+/.idea/

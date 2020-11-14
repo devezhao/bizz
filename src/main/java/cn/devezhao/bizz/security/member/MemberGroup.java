@@ -73,6 +73,6 @@ public class MemberGroup extends Member implements Group {
 	 * @return
 	 */
 	public Set<Principal> getMembers() {
-		return Collections.<Principal>unmodifiableSet(allMembers);
+		return Collections.unmodifiableSet(allMembers);
 	}
 }

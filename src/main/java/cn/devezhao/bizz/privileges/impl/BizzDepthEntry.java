@@ -61,7 +61,6 @@ public class BizzDepthEntry implements DepthEntry {
 	private final String name;
 	private final int mask;
 
-	private final DepthEntry previous;
 	private DepthEntry next;
 
 	/**
@@ -72,12 +71,11 @@ public class BizzDepthEntry implements DepthEntry {
 	public BizzDepthEntry(String name, int mask, DepthEntry previous) {
 		this.name = name;
 		this.mask = mask;
-		this.previous = previous;
 
 		if (previous != null) {
-			BizzDepthEntry bde = (BizzDepthEntry) this.previous;
+			BizzDepthEntry bde = (BizzDepthEntry) previous;
 			if (bde.next != null) {
-				throw new IllegalArgumentException("Could't re-defined next DepthEntry for BizzDepthEnter!");
+				throw new IllegalArgumentException("Cannot re-defined next DepthEntry for BizzDepthEnter!");
 			}
 			bde.next = this;
 		}
@@ -85,7 +83,7 @@ public class BizzDepthEntry implements DepthEntry {
 
 	@Override
     public Serializable getIdentity() {
-		return new StringBuffer(getName()).append(':').append(getMask()).toString();
+		return getName() + ':' + getMask();
 	}
 
 	@Override
@@ -100,7 +98,6 @@ public class BizzDepthEntry implements DepthEntry {
 
 	@Override
 	public String toString() {
-		return new StringBuffer().append(getIdentity()).append(":BizzDepthEntry@")
-				.append(super.hashCode()).toString();
+		return getIdentity() + ":BizzDepthEntry@" + super.hashCode();
 	}
 }

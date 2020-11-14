@@ -77,15 +77,17 @@ public class Member implements Identity {
 
 	@Override
 	public boolean equals(Object o) {
-		if (o == null || getClass() != o.getClass()) return false;
-		if (o == this) return true;
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		if (o == this) {
+			return true;
+		}
 		return hashCode() == o.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return new StringBuffer(getName()).append(':').append(getIdentity())
-				.append(':').append(isDisabled() ? 0 : 1).append('@').append(
-						super.toString()).toString();
+		return getName() + ':' + getIdentity() + ':' + (isDisabled() ? 0 : 1) + '@' + super.toString();
 	}
 }

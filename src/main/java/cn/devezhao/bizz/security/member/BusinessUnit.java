@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.security.Principal;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -20,7 +19,7 @@ public class BusinessUnit extends MemberGroup {
 	private User principal;
 	
 	private BusinessUnit parentBizUnit;
-	private Set<BusinessUnit> childBizUnits = new HashSet<BusinessUnit>();
+	private final Set<BusinessUnit> childBizUnits = new HashSet<>();
 	
 	/**
 	 * @param identity
@@ -104,7 +103,7 @@ public class BusinessUnit extends MemberGroup {
 	 * @return
 	 */
 	public Set<BusinessUnit> getChildren() {
-		return Collections.<BusinessUnit>unmodifiableSet(childBizUnits);
+		return Collections.unmodifiableSet(childBizUnits);
 	}
 	
 	/**

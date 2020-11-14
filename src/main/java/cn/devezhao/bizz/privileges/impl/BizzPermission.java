@@ -20,7 +20,7 @@ public class BizzPermission implements Permission {
 	
 	/** 
 	 * 创建 */
-	public static final Permission CREATE = new BizzPermission("C", (1 << 0), false);
+	public static final Permission CREATE = new BizzPermission("C", (1), false);
 	/** 
 	 * 删除 */
 	public static final Permission DELETE = new BizzPermission("D", (1 << 1), true);
@@ -38,7 +38,7 @@ public class BizzPermission implements Permission {
 	public static final Permission SHARE  = new BizzPermission("S", (1 << 5), true);
 	/** 
 	 * 无 */
-	public static final Permission NONE   = new BizzPermission("N", (0 << 0), false);
+	public static final Permission NONE   = new BizzPermission("N", (0), false);
 
 	/**
 	 * 获取指定<tt>masks</tt>值所表示的动作列表
@@ -48,18 +48,24 @@ public class BizzPermission implements Permission {
 	 */
 	public static Permission[] parse(final int masks) {
 		List<Permission> bps = new ArrayList<>(3);
-		if ((masks & CREATE.getMask()) != 0)
+		if ((masks & CREATE.getMask()) != 0) {
 			bps.add(CREATE);
-		if ((masks & DELETE.getMask()) != 0)
+		}
+		if ((masks & DELETE.getMask()) != 0) {
 			bps.add(DELETE);
-		if ((masks & UPDATE.getMask()) != 0)
+		}
+		if ((masks & UPDATE.getMask()) != 0) {
 			bps.add(UPDATE);
-		if ((masks & READ.getMask()) != 0)
+		}
+		if ((masks & READ.getMask()) != 0) {
 			bps.add(READ);
-		if ((masks & ASSIGN.getMask()) != 0)
+		}
+		if ((masks & ASSIGN.getMask()) != 0) {
 			bps.add(ASSIGN);
-		if ((masks & SHARE.getMask()) != 0)
+		}
+		if ((masks & SHARE.getMask()) != 0) {
 			bps.add(SHARE);
+		}
 		return bps.toArray(new Permission[0]);
 	}
 	
@@ -90,8 +96,7 @@ public class BizzPermission implements Permission {
 
 	@Override
     public Serializable getIdentity() {
-		return new StringBuffer(getName()).append(':').append(getMask())
-				.append(':').append(isNeedGuard() ? 1 : 0).toString();
+		return getName() + ':' + getMask() + ':' + (isNeedGuard() ? 1 : 0);
 	}
 
 	@Override
@@ -115,7 +120,6 @@ public class BizzPermission implements Permission {
 	
 	@Override
 	public String toString() {
-		return new StringBuffer().append(getIdentity())
-				.append(":BizzPermission@").append(super.hashCode()).toString();
+		return getIdentity() + ":BizzPermission@" + super.hashCode();
 	}
 }

@@ -15,7 +15,7 @@ public interface Privileges extends Serializable {
 
 	/**
 	 * 最高权限定义 */
-	final Privileges ROOT = new Privileges() {
+	Privileges ROOT = new Privileges() {
 		private static final long serialVersionUID = 4001796962013737440L;
 		@Override
 		public Serializable getIdentity() {
@@ -37,7 +37,7 @@ public interface Privileges extends Serializable {
 	
 	/**
 	 * 无权限定义 */
-	final Privileges NONE = new Privileges() {
+	Privileges NONE = new Privileges() {
 		private static final long serialVersionUID = 4001796962013737440L;
 		@Override
 		public Serializable getIdentity() {

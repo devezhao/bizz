@@ -23,10 +23,10 @@ import cn.devezhao.bizz.security.member.User;
  */
 public class EntityQueryFilter implements QueryFilter {
 
-	private static String F_OwnUser;
-	private static String F_OwnBizUnit;
-	private static String V_RootUser;
-	private static String V_RootRole;
+	private static final String F_OwnUser;
+	private static final String F_OwnBizUnit;
+	private static final String V_RootUser;
+	private static final String V_RootRole;
 	static {
 		String cfgFile = "bizz.properties";
 		InputStream in = EntityQueryFilter.class.getClassLoader().getResourceAsStream(cfgFile);
@@ -37,7 +37,7 @@ public class EntityQueryFilter implements QueryFilter {
 		try {
 			props.load(in);
 		} catch (IOException e) {
-			throw new BizzException("Could't load config file!", e);
+			throw new BizzException("Cannot load config file!", e);
 		}
 		
 		F_OwnUser = props.getProperty("field.own-user");

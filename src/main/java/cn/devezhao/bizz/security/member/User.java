@@ -18,7 +18,7 @@ public class User extends Member implements Principal {
 
 	private Role owningRole;
 	private BusinessUnit owningBizUnit;
-	private Set<Team> owningTeams = new HashSet<>(2);
+	private final Set<Team> owningTeams = new HashSet<>(2);
 
 	/**
 	 * @param identity
@@ -47,7 +47,7 @@ public class User extends Member implements Principal {
 	 * @return
 	 */
 	public Set<Team> getOwningTeams() {
-		return Collections.<Team>unmodifiableSet(owningTeams);
+		return Collections.unmodifiableSet(owningTeams);
 	}
 	
 	/**
