@@ -1,5 +1,7 @@
 package cn.devezhao.bizz.security.member;
 
+import cn.devezhao.bizz.privileges.Privileges;
+
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.Collection;
@@ -7,14 +9,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.devezhao.bizz.privileges.Privileges;
-
 /**
  * 角色
  * 
  * @author <a href="mailto:zhaofang123@gmail.com">Zhao Fangfang</a>
  * @since 0.2, 2010-10-4
- * @version $Id: Role.java 10 2015-06-08 09:10:43Z zhaoff@wisecrm.com $
+ * @version $Id: Role.java 10 2015-06-08 09:10:43Z zhaofang123@gmail.com $
  */
 public class Role extends MemberGroup {
 	private static final long serialVersionUID = -8635993188721946096L;

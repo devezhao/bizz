@@ -1,10 +1,5 @@
 package cn.devezhao.bizz.security;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.MessageFormat;
-import java.util.Properties;
-
 import cn.devezhao.bizz.BizzException;
 import cn.devezhao.bizz.privileges.DepthEntry;
 import cn.devezhao.bizz.privileges.Privileges;
@@ -14,12 +9,17 @@ import cn.devezhao.bizz.security.member.BusinessUnit;
 import cn.devezhao.bizz.security.member.Role;
 import cn.devezhao.bizz.security.member.User;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.MessageFormat;
+import java.util.Properties;
+
 /**
  * EntityQueryFilter
  * 
  * @author <a href="mailto:zhaofang123@gmail.com">Zhao Fangfang</a>
  * @since 0.2, 2010-10-4
- * @version $Id: EntityQueryFilter.java 10 2015-06-08 09:10:43Z zhaoff@wisecrm.com $
+ * @version $Id: EntityQueryFilter.java 10 2015-06-08 09:10:43Z zhaofang123@gmail.com $
  */
 public class EntityQueryFilter implements QueryFilter {
 

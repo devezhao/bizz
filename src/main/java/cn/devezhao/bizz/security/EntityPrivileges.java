@@ -1,24 +1,20 @@
 package cn.devezhao.bizz.security;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import cn.devezhao.bizz.privileges.DepthEntry;
 import cn.devezhao.bizz.privileges.Permission;
 import cn.devezhao.bizz.privileges.Privileges;
 import cn.devezhao.bizz.privileges.impl.BizzDepthEntry;
 import cn.devezhao.bizz.privileges.impl.BizzPermission;
 
+import java.io.Serializable;
+import java.util.*;
+
 /**
  * 实体权限
  * 
  * @author <a href="mailto:zhaofang123@gmail.com">Zhao Fangfang</a>
  * @since 0.2, 2010-10-4
- * @version $Id: EntityPrivileges.java 10 2015-06-08 09:10:43Z zhaoff@wisecrm.com $
+ * @version $Id: EntityPrivileges.java 10 2015-06-08 09:10:43Z zhaofang123@gmail.com $
  */
 public class EntityPrivileges implements Privileges {
 	private static final long serialVersionUID = -8141823128069571526L;

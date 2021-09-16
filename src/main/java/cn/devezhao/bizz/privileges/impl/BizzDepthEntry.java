@@ -1,17 +1,17 @@
 package cn.devezhao.bizz.privileges.impl;
 
+import cn.devezhao.bizz.privileges.DepthEntry;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import cn.devezhao.bizz.privileges.DepthEntry;
 
 /**
  * BizzDepthEntry
  * 
  * @author <a href="mailto:zhaofang123@gmail.com">Zhao Fangfang</a>
  * @since 0.2, 2010-10-4
- * @version $Id: BizzDepthEntry.java 10 2015-06-08 09:10:43Z zhaoff@wisecrm.com $
+ * @version $Id: BizzDepthEntry.java 10 2015-06-08 09:10:43Z zhaofang123@gmail.com $
  */
 public class BizzDepthEntry implements DepthEntry {
 	private static final long serialVersionUID = 7612024724703543451L;

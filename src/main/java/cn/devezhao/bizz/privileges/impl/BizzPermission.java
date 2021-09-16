@@ -1,17 +1,17 @@
 package cn.devezhao.bizz.privileges.impl;
 
+import cn.devezhao.bizz.privileges.Permission;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.devezhao.bizz.privileges.Permission;
 
 /**
  * BizzPermission
  * 
  * @author <a href="mailto:zhaofang123@gmail.com">Zhao Fangfang</a>
  * @since 0.2, 2010-10-4
- * @version $Id: BizzPermission.java 10 2015-06-08 09:10:43Z zhaoff@wisecrm.com $
+ * @version $Id: BizzPermission.java 10 2015-06-08 09:10:43Z zhaofang123@gmail.com $
  */
 public class BizzPermission implements Permission {
 	private static final long serialVersionUID = -3736314513059920238L;

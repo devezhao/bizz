@@ -11,7 +11,7 @@ import java.util.Set;
  * 
  * @author <a href="mailto:zhaofang123@gmail.com">Zhao Fangfang</a>
  * @since 0.2, 2010-10-4
- * @version $Id: User.java 10 2015-06-08 09:10:43Z zhaoff@wisecrm.com $
+ * @version $Id: User.java 10 2015-06-08 09:10:43Z zhaofang123@gmail.com $
  */
 public class User extends Member implements Principal {
 	private static final long serialVersionUID = -5924320591430994214L;

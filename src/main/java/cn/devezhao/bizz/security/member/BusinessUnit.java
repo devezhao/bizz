@@ -11,7 +11,7 @@ import java.util.Set;
  * 
  * @author <a href="mailto:zhaofang123@gmail.com">Zhao Fangfang</a>
  * @since 0.2, 2010-10-4
- * @version $Id: BusinessUnit.java 10 2015-06-08 09:10:43Z zhaoff@wisecrm.com $
+ * @version $Id: BusinessUnit.java 10 2015-06-08 09:10:43Z zhaofang123@gmail.com $
  */
 public class BusinessUnit extends MemberGroup {
 	private static final long serialVersionUID = -1751170855052911017L;
