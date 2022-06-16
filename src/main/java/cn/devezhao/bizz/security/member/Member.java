@@ -69,7 +69,14 @@ public class Member implements Identity {
 	public boolean isDisabled() {
 		return disabled;
 	}
-	
+
+	@Override
+	public String toString() {
+		return getName() + ':' + getIdentity() + ':' + (isDisabled() ? 0 : 1) + '@' + super.toString();
+	}
+
+	// -- Use ID
+
 	@Override
 	public int hashCode() {
 	    return Objects.hash(super.hashCode(), getIdentity());
@@ -84,10 +91,5 @@ public class Member implements Identity {
 			return true;
 		}
 		return hashCode() == o.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return getName() + ':' + getIdentity() + ':' + (isDisabled() ? 0 : 1) + '@' + super.toString();
 	}
 }

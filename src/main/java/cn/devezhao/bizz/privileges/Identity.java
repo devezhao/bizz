@@ -12,16 +12,22 @@ import java.io.Serializable;
 public interface Identity extends Serializable {
 
     /**
+     * ID
+     *
      * @return
      */
 	Serializable getIdentity();
 
     /**
+     * 名称
+     *
      * @return
      */
 	String getName();
 
     /**
+     * 掩码
+     *
      * @return
      */
 	int getMask();

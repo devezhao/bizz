@@ -2,7 +2,6 @@ package cn.devezhao.bizz.security.member;
 
 import java.io.Serializable;
 import java.security.Principal;
-import java.security.acl.Group;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -15,7 +14,7 @@ import java.util.Set;
  * @since 0.2, 2010-10-4
  * @version $Id: MemberGroup.java 10 2015-06-08 09:10:43Z zhaofang123@gmail.com $
  */
-public class MemberGroup extends Member implements Group {
+public class MemberGroup extends Member {
 	private static final long serialVersionUID = 4050659655955435119L;
 	
 	/**
@@ -31,27 +30,40 @@ public class MemberGroup extends Member implements Group {
 		super(identity, name, disabled);
 	}
 
-	@Override
+	/**
+	 * @param user
+	 * @return
+	 */
     public boolean addMember(Principal user) {
 		if (isMember(user)) {
 			return false;
 		}
 		return allMembers.add(user);
 	}
-	
-	@Override
+
+	/**
+	 * @param user
+	 * @return
+	 */
     public boolean removeMember(Principal user) {
 		if (!isMember(user)) {
 			return false;
 		}
 		return allMembers.remove(user);
 	}
-	
-	@Override
+
+	/**
+	 * @param user
+	 * @return
+	 */
     public boolean isMember(Principal user) {
 		return allMembers.contains(user);
 	}
-	
+
+	/**
+	 * @param identity
+	 * @return
+	 */
 	public boolean isMember(Serializable identity) {
 		for (Principal user : allMembers) {
 			if (((User) user).getIdentity().equals(identity)) {
@@ -60,9 +72,8 @@ public class MemberGroup extends Member implements Group {
 		}
 		return false;
 	}
-	
-	@Override
-    @Deprecated
+
+	@Deprecated
 	public Enumeration<? extends Principal> members() {
 		throw new UnsupportedOperationException("Deprecated! Please using #getMembers");
 	}
